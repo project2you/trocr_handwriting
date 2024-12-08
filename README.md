@@ -67,6 +67,30 @@ The following metrics are used for evaluation:
 
 ---
 
+## **New Additions**
+
+### **Performance Monitoring Components**
+1. **PerformanceMonitor class**: Provides a unified way to track real-time performance during training and evaluation.
+2. **Real-time metrics tracking**: Continuously monitors key metrics like loss, accuracy, and speed.
+3. **Resource utilization monitoring**: Tracks GPU/CPU usage, memory consumption, and processing times to ensure efficient resource management.
+
+### **Enhanced Error Handling**
+1. **Automatic recovery system**: Recovers training sessions automatically after interruptions or errors.
+2. **Error state logging**: Captures the exact state of the model and data when errors occur for easier debugging.
+3. **Detailed error logging**: Provides comprehensive logs of exceptions, stack traces, and resource states.
+
+### **Advanced Metrics**
+1. **BLEU Score**: Evaluates how closely the predicted text matches the ground truth using a standard NLP metric.
+2. **ROC/PR Curves**: Visualizes the trade-offs between precision, recall, and classification thresholds.
+3. **Character-level confusion matrix**: Highlights misclassified characters for detailed error analysis.
+
+### **Memory Optimization**
+1. **Dynamic OOM handling**: Automatically adjusts batch sizes to prevent Out-of-Memory errors during training.
+2. **Automatic batch size adjustment**: Dynamically tunes the batch size based on available memory.
+3. **Improved cache management**: Reduces redundant data storage and optimizes memory allocation.
+
+---
+
 ## **File Structure**
 
 ```plaintext
@@ -136,25 +160,24 @@ Input Image --> ContourExtractor --> Vision Encoder --> Text Decoder --> Output 
 
 ---
 
-## **ตัวชี้วัด**
+## **สิ่งที่เพิ่มเข้ามาใหม่**
 
-ตัวชี้วัดที่ใช้ประเมินผล:
-1. **ความแม่นยำในระดับตัวอักษร**: ความถูกต้องในระดับตัวอักษร
-2. **ความแม่นยำในระดับคำ**: ความถูกต้องในระดับคำ
-3. **BLEU Score**: ความใกล้เคียงระหว่างข้อความที่ทำนายและข้อความจริง
-4. **Text Similarity**: ความคล้ายคลึงของข้อความ
-5. **ROC-AUC และ PR-AUC**: สำหรับการจำแนกตัวอักษร
-6. **Confusion Matrix**: แสดงข้อผิดพลาดสำหรับแต่ละตัวอักษร
+### **ส่วนประกอบสำหรับการติดตามประสิทธิภาพ**
+1. **คลาส PerformanceMonitor**: ใช้ติดตามประสิทธิภาพแบบเรียลไทม์ระหว่างการฝึกและการประเมินผล
+2. **การติดตาม metrics แบบเรียลไทม์**: วัดค่าต่าง ๆ เช่น Loss, Accuracy, และความเร็วในการประมวลผล
+3. **การติดตามการใช้งานทรัพยากร**: ตรวจสอบการใช้งาน GPU/CPU, การใช้หน่วยความจำ, และเวลาที่ใช้ในการประมวลผล
 
----
+### **การจัดการข้อผิดพลาดขั้นสูง**
+1. **ระบบกู้คืนอัตโนมัติ**: เรียกคืนการฝึกได้อัตโนมัติเมื่อเกิดการขัดจังหวะหรือข้อผิดพลาด
+2. **การบันทึกสถานะข้อผิดพลาด**: เก็บสถานะของโมเดลและข้อมูลเมื่อเกิดข้อผิดพลาดเพื่อการดีบักที่ง่ายขึ้น
+3. **การบันทึกข้อผิดพลาดอย่างละเอียด**: ให้รายละเอียดข้อผิดพลาด เช่น ข้อยกเว้น, stack trace, และสถานะการใช้งานทรัพยากร
 
-## **โครงสร้างไฟล์**
+### **ตัวชี้วัดขั้นสูง**
+1. **BLEU Score**: วัดความใกล้เคียงของข้อความพยากรณ์กับข้อความจริงด้วยค่ามาตรฐาน NLP
+2. **ROC/PR Curves**: แสดงผลการแลกเปลี่ยนระหว่าง Precision และ Recall ที่ระดับต่าง ๆ
+3. **Character-level Confusion Matrix**: แสดงข้อผิดพลาดในระดับตัวอักษรอย่างละเอียด
 
-```plaintext
-project/
-├── checkpoints/          # Checkpoints ของโมเดล
-├── evaluation_results/   # แผนภาพและตัวชี้วัด
-├── visualizations/       # การแสดงผลการฝึก
-├── training_metrics.json # ตัวชี้วัดในรูปแบบ JSON
-└── ocr_training.log      # ไฟล์บันทึกการฝึกโมเดล
-```
+### **การปรับปรุงหน่วยความจำ**
+1. **การจัดการ OOM แบบไดนามิก**: ปรับขนาด batch โดยอัตโนมัติเพื่อป้องกันข้อผิดพลาด OOM ระหว่างการฝึก
+2. **การปรับขนาด batch อัตโนมัติ**: ปรับแต่ง batch size ให้เหมาะสมกับหน่วยความจำที่มี
+3. **การจัดการ cache ที่ปรับปรุงแล้ว**: ลดการเก็บข้อมูลซ้ำซ้อนและปรับปรุงการจัดสรรหน่วยความจำ
